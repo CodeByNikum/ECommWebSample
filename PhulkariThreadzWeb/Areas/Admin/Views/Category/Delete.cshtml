@@ -1,0 +1,42 @@
+﻿@model PhulkariThreadz.Models.Category
+
+<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-area="Admin" asp-controller="Category" asp-action="Index">Category List</a></li>
+            <li><span>Delete Category</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="holder" style="min-height:700px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-18 col-lg-12">
+                <h2 class="text-center">Delete Category</h2>
+                <div class="form-wrapper">
+                    <form method="post" asp-action="DeletePost">
+                        <input asp-for="Id" hidden />
+
+                        <div class="form-group">
+                            <label asp-for="Name"></label>
+                            <input asp-for="Name" class="form-control" disabled="disabled" />
+                        </div>
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-danger" style="width:150px">Delete</button>
+                            <a asp-controller="Category" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to list</a>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

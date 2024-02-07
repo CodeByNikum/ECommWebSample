@@ -1,0 +1,147 @@
+﻿@model PhulkariThreadz.Models.ViewModels.ProductVM
+@if (TempData["CategoryId"] != null)
+{
+    <input id="hfCategoryId" hidden value="@TempData["CategoryId"]" />
+
+}
+@if (TempData["SubCategoryId"] != null)
+{
+    <input id="hfSubCategoryId" hidden value="@TempData["SubCategoryId"]" />
+}
+<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">Product List</a></li>
+            @if (TempData["CategoryId"] != null)
+            {
+                <li><span>Update Product</span></li>
+            }
+            else
+            {
+                <li><span>Add Product</span></li>
+            }
+        </ul>
+    </div>
+</div>
+
+<div class="holder" style="min-height:700px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-18 col-lg-12">
+                @if (TempData["CategoryId"] != null)
+                {
+                    <h2 class="text-center">Update Product</h2>
+                }
+                else
+                {
+                    <h2 class="text-center">Add Product</h2>
+                }
+
+                <div class="form-wrapper">
+                    <form autocomplete="off" method="post" enctype="multipart/form-data">
+                        <input asp-for="Product.ProductId" hidden />
+                        @*  <div asp-validation-summary="All"></div>*@
+                        <div class="row">
+
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label asp-for="Product.ProductName"></label>
+                                    <input asp-for="Product.ProductName" class="form-control" />
+                                    <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label asp-for="Product.Price"></label>
+                                    <input asp-for="Product.Price" class="form-control" />
+                                    <span asp-validation-for="Product.Price" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <label>Category</label>
+                                    <select id="ddlCategory" class="form-control">
+                                        <option disabled selected>-Select Category-</option>
+                                    </select>
+                                    <span asp-validation-for="Product.SubCategory.CategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-7">
+                                <div class="form-group">
+                                    <label asp-for="Product.SubCategoryId"></label>
+                                    <select asp-for="Product.SubCategoryId" class="form-control" id="ddlSubCategory">
+                                        <option value="0" disabled selected>-Select Sub Category-</option>
+                                    </select>
+                                    <span asp-validation-for="Product.SubCategoryId" class="text-danger"></span>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="clearfix">
+                                    <a asp-area="Admin" asp-controller="SubCategory" asp-action="Create" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Sub Category" class="btn mt-6" style="paddding: 30px 30px;"><i class="bi bi-plus-circle "></i></a>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <div class="form-group">
+                            <label asp-for="Product.ProductDescription"></label>
+                            <textarea asp-for="Product.ProductDescription" class="form-control"></textarea>
+                            <span asp-validation-for="Product.ProductDescription" class="text-danger"></span>
+                        </div>
+                        <div class="row">
+                            @if (Model.ProductImages != null)
+                            {
+                                @foreach (var item in Model.ProductImages)
+                                {
+                                    if (item.IsMainImage)
+                                    {
+                                        <img src="@item.ImageUrl" class="zoom ml-2" style="border-radius:3px; border:2px solid #20c997;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Main Image" width="100" height="100" />
+                                    }
+                                    else
+                                    {
+                                        <img src="@item.ImageUrl" class="zoom ml-2" style="border-radius:3px; border:2px solid Lightgrey;" width="100" height="100" />
+                                    }
+
+                                }
+                            }
+
+                            <div id="img-preview" style="display:none"></div>
+
+                            <div id="dvAddImage" class="ml-2" style="border-radius:3px; border:1px dashed Lightgrey; cursor:pointer" width="100" height="100" data-toggle="tooltip" data-placement="top" title="" data-original-title="Add Image">
+                                <img src="https://icon-library.com/images/add-photo-icon/add-photo-icon-19.jpg" width="98" height="98" />
+                            </div>
+                            <input asp-for="File" type="file" id="fuAddImage" accept="image/*" style="display:none" />
+                        </div>
+
+                        <div class="text-center">
+
+                            @if (TempData["CategoryId"] != null)
+                            {
+                                <button type="submit" onclick="return ValidateInput()" class="btn" style="width:150px">Update</button>
+                                <a asp-area="Admin" asp-controller="ProductImage" asp-action="Index" asp-route-productId="@Model.Product.ProductId" asp-route-productName="@Model.Product.ProductName" class="btn" style="width:150px">Edit Images</a>
+                            }
+                            else
+                            {
+                                <button type="submit" onclick="return ValidateInput()" class="btn" style="width:150px">Create</button>
+                            }
+                            <a asp-controller="Product" asp-action="Index" class="btn" style="width:150px">Back to list</a>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+      
+    <script src="~/js/Product/Product.js"></script>
+
+
+}

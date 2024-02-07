@@ -1,0 +1,31 @@
+﻿@model List<PhulkariThreadz.Models.ViewModels.CategoryHomeVM>
+
+
+<ul class="category-list" id="CategoryList">
+
+    <input type="text" hidden value="@Model.Count" id="hfTotalCategories" />
+    @foreach (var item in Model)
+    {
+        <li class="active category" id="@item.Id" name="@item.Name" style="cursor:pointer">
+            <a onclick="toggleOuter(this)" title="@item.Name" >@item.Name&nbsp;<span>(@item.SubCategories.Count)</span></a>
+            <div class="toggle-category js-toggle-category" onclick="toggleCatList(this)">
+                <span><i class="icon-angle-down"></i></span>
+            </div>
+            <ul class="category-list" id="ulSubCategory" style="display:none">
+                @foreach (var subItem in @item.SubCategories)
+                {
+                    <li class="active subcategory" style="cursor:pointer" id="@subItem.SubCategoryId"><a onclick="toggleInner(this)" title="@subItem.SubCategoryName">@subItem.SubCategoryName&nbsp;<span></span></a></li>
+                }
+            </ul>
+        </li>
+    }
+
+</ul>
+
+
+@section Scripts{
+
+    <script src="~/js/Shop/index.js"></script>
+
+
+}

@@ -1,0 +1,100 @@
+﻿<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-area="Admin" asp-controller="Product" asp-action="Index">Product List</a></li>
+            <li><span>Add Product Images</span></li>
+        </ul>
+    </div>
+</div>
+<div class="holder" style="min-height:700px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-18 col-lg-12">
+                <div class="row" style="display:flex;">
+                    <div class="col-md-6">
+                        <h2>Add Product Images</h2>
+                    </div>
+                    <div class="col-md-12" style="text-align: right">
+                        <a asp-controller="Product" asp-action="Index" class="btn btn--sm">Product list</a>
+                    </div>
+                </div>
+                <div class="form-wrapper">
+                    <form>
+                        <input type="hidden" id="hfProductId" value="0" />
+                        <div id="dvDropdowns" class="border p-1" style="background-color:#f4f4f5">
+
+                            <div class="row">
+                                <div class="col-sm-6" id="dvCategoryDdl">
+                                    <label>Sub Category</label><br />
+                                    <select class="form-control" id="ddlCategory" style="width:250px;">
+                                        <option disabled selected>-Select Sub Categories-</option>
+                                    </select>
+                                </div>
+                                <div class="col-sm-6" id="dvProductDdl" style="display:none">
+                                    <label>Product</label><br />
+                                    <select class="form-con" id="ddlProducts" style="width:250px;">
+                                        <option disabled selected>-Select Product-</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <center>
+                                <div class="loader" id="dvLoader"></div>
+                            </center>
+                        </div>
+
+                        <div class="row mt-1" id="dvAddImages" style="display:none;">
+
+                            <div class="col-sm-18">
+                                <div class="row">
+                                    <h2 data-toggle="tooltip" data-placement="top" title="" data-original-title="Product Name" id="txtProductName" style="color:#17c6aa"></h2>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <input class="form-control" id="imgfile" type="file" style="width:300px;" accept="image/*" multiple="multiple" />
+                                        Size : 400 x 200(pixels)
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div>
+                                        <output id="result"></output>
+                                    </div>
+                                </div>
+                                <div class="row mt-0">
+                                    <div>
+                                        <button data-toggle="tooltip" data-placement="top" title="" data-original-title="Add images" type="button" id="btnAdd" onclick="saveImage();" class="btn btn--sm">Add</button>&nbsp;
+                                        <input data-toggle="tooltip" data-placement="top" title="" data-original-title="Clear selected images" type="button" value="Clear" id="btnClear" class="btn btn--sm" />
+                                    </div>
+                                </div>
+
+
+                                <table class="table table-bordered" style="border-radius:2px; border:2px solid Lightgrey; " id="tblImages">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th class="text-center">Images</th>
+                                            <th class="text-center">Is Main Image?</th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                </table>
+
+
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+@section Scripts{
+
+    <script src="~/js/Product/Image.js"></script>
+
+}

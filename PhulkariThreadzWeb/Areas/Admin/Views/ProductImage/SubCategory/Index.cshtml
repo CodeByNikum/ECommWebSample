@@ -1,0 +1,53 @@
+﻿<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><span>Sub Category List</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="holder" style="min-height:700px;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-18 col-lg-12">
+                <div class="row" style="display:flex;">
+                    <div class="col-md-6">
+                        <h2>Sub Category List</h2>
+                    </div>
+                    <div class="col-md-12" style="text-align:right">
+                        <a asp-controller="SubCategory" asp-action="Create" class="btn btn--sm"><i class="bi bi-plus-circle"></i>&nbsp; Add Sub Category</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-10">
+                        <label>&nbsp;</label>
+                        <input type="text" id="txtSearchKey" placeholder="Search by sub category or category name..." class="form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <button data-toggle="tooltip" data-placement="top" title="" data-original-title="Search sub category" onclick="loadDataTable()" class="btn btn--sm mt-5"><i class="bi bi-search"></i></button>
+                    </div>
+                </div>
+                <table class="table table-bordered" id="tblData" style="width:100%">
+                    <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Sub Category Name</th>
+                            <th>Category Name</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+
+    <script src="~/js/SubCategory.js"></script>
+
+}

@@ -1,0 +1,125 @@
+﻿@model List<PhulkariThreadz.Models.ViewModels.ProductsHomeVM>
+
+
+
+<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><span>My Wishlist</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="holder">
+    <div class="container">
+        <form id="__AjaxAntiForgeryForm" action="#" method="post">
+
+
+            <div class="row">
+                <div class="col-md-4 aside aside--left">
+                    <div class="list-group">
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="list-group-item">Account Details</a>
+                        <a asp-area="Identity" asp-page="/Account/Manage/AccountAddress" class="list-group-item">My Addresses</a>
+                        <a asp-area="Customer" asp-controller="Account" asp-action="Wishlist" class="list-group-item active">My Wishlist</a>
+                        <a asp-area="Customer" asp-controller="Account" asp-action="OrderHistory" class="list-group-item">My Order History</a>
+                        <a href="#" class="list-group-item disabled">My Reviews</a>
+                        <a href="#" class="list-group-item disabled">My Saved Tags</a>
+                        <a href="#" class="list-group-item disabled">Compare Products</a>
+                    </div>
+                </div>
+                <div class="col-md-14 aside">
+                    <h1 class="mb-3">My Wishlist</h1>
+                    @if (Model.Count > 0)
+                    {
+                        <div class="prd-grid-wrap" id="productBox">
+                            <div id="dvProductGrid" class="prd-grid product-listing data-to-show-3 data-to-show-md-3 data-to-show-sm-2 js-category-grid prd-horgrid" data-grid-tab-content>
+
+                                @foreach (var item in Model)
+                                {
+                                    <div id="dvProductLables" class="prd prd--style2 prd-labels--max prd-labels-shadow prd-w-xs">
+                                        <div class="prd-inside">
+                                            <div class="prd-img-area">
+                                                <a asp-area="Customer" asp-controller="Shop" asp-action="ProductDetailView" asp-route-productId="@item.ProductId" class="prd-img image-hover-scale image-container">
+                                                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="@item.MainImageUrl" alt="@item.ProductName" class="js-prd-img fade-up ls-is-cached lazyload ">
+                                                    <div class="foxic-loader"></div>
+                                                    <div class="prd-big-squared-labels">
+                                                    </div>
+                                                </a>
+                                                <div class="prd-circle-labels">
+                                                    <a onclick="AddToWishlist(@item.ProductId)" class="circle-label-compare circle-label-wishlist--add js-add-wishlist mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a><a href="#" class="circle-label-compare circle-label-wishlist--off js-remove-wishlist mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a>
+                                                    <a onclick="OpenModel(@item.ProductId)" class="circle-label-qview prd-hide-mobile"><i class="icon-eye"></i><span>QUICK VIEW</span></a>
+                                                </div>
+
+                                                <ul class="list-options color-swatch">
+                                                    @foreach (var img in item.ProductImages)
+                                                    {
+                                                        <li data-image="@img.ImageUrl" onhover="toggleImage(this);"><a href="#" class="js-color-toggle" data-toggle="tooltip" data-placement="right"><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="@img.ImageUrl" class="lazyload fade-up" alt="Color Name"></a></li>
+                                                    }
+                                                </ul>
+
+                                            </div>
+                                            <div class="prd-info">
+                                                <div class="prd-info-wrap">
+                                                    <div class="prd-info-top">
+                                                        <div class="prd-rating">
+                                                            @for (int i = 0; i < Convert.ToInt32(item.RatingCount); i++)
+                                                            {
+                                                                <i class="icon-star-fill fill"></i>
+                                                            }
+                                                            @for (int i = 0; i < 5 - Convert.ToInt32(item.RatingCount); i++)
+                                                            {
+                                                                <i class="icon-star"></i>
+                                                            }
+                                                        </div>
+                                                    </div>
+                                                    <div class="prd-tag"><a href="#">PhilkariThreadz</a></div>
+                                                    <h2 class="prd-title"><a href="product.html">@item.ProductName</a></h2>
+                                                    <div class="prd-description">
+                                                        @item.ProductDescription
+                                                    </div>
+                                                    <div class="prd-action">
+                                                        <form method="post">
+                                                            <a class="btn js-prd-addtocart" onclick="AddToCart(@item.ProductId)">Add To Cart</a>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                                <div class="prd-hovers">
+                                                    <div class="prd-circle-labels">
+                                                        <div>
+                                                            <a onclick="AddToWishlist(@item.ProductId)" class="circle-label-compare circle-label-wishlist--add mt-0" title="Add To Wishlist"><i class="icon-heart-stroke"></i></a>
+                                                            <a onclick="RemoveFromWishlist(@item.ProductId)" class="circle-label-compare circle-label-wishlist--off mt-0" title="Remove From Wishlist"><i class="icon-heart-hover"></i></a>
+                                                        </div>
+                                                        <div class="prd-hide-mobile"><a onclick="OpenModel()" class="circle-label-qview"><i class="icon-eye"></i><span>QUICK VIEW</span></a></div>
+                                                    </div>
+                                                    <div class="prd-price">
+
+                                                        <div class="price-new">₹ @item.Price</div>
+                                                    </div>
+                                                    <div class="prd-action">
+                                                        <div class="prd-action-left">
+                                                            <form method="post">
+                                                                <a class="btn js-prd-addtocart" onclick="AddToCart(@item.ProductId)">Add To Cart</a>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        </div>
+                    }
+
+
+
+                </div>
+
+
+            </div>
+        </form>
+    </div>
+</div>

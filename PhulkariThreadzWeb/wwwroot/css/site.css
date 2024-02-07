@@ -1,0 +1,274 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+input[type="checkbox"] {
+    display: inline-block;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+
+body {
+    margin-bottom: 60px;
+}
+
+#result {
+    display: inline-flex;
+    flex-wrap: wrap;
+    white-space: normal;
+    gap: 15px;
+    padding: 20px 0;
+    width: 100%;
+}
+
+.thumbnail {
+    height: 50px;
+    width: 100%;
+}
+
+
+.thumbnailBanner {
+    height: 100px;
+    width: 100%;
+}
+
+
+.row1 {
+    text-align: center;
+    margin: 0 auto;
+}
+
+    .row1 .col-md-8 {
+        display: inline-block;
+        vertical-align: middle;
+        float: none;
+    }
+
+.sno {
+    width: 10px;
+}
+
+.actions2 {
+    width: 30px;
+    text-align: center;
+}
+
+.zoom {
+    padding: 0px;
+    transition: transform .2s;
+    position: relative;
+}
+
+    .zoom:hover {
+        -ms-transform: scale(3); /* IE 9 */
+        -webkit-transform: scale(3); /* Safari 3-8 */
+        transform: scale(3);
+        -webkit-transition: all .5s ease;
+        -moz-transition: all .5s ease;
+        -ms-transition: all .5s ease;
+        transition: all .5s ease;
+        position: relative;
+        z-index: 99999;
+    }
+
+.loader {
+    border: 10px solid #f7f7f3;
+    border-radius: 50%;
+    border-top: 10px solid #20c997;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+
+.switch {
+    display: inline-block;
+    height: 34px;
+    position: relative;
+    width: 60px;
+}
+
+    .switch input {
+        display: none;
+    }
+
+.slider {
+    background-color: #ccc;
+    bottom: 0;
+    cursor: pointer;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    transition: .4s;
+}
+
+    .slider:before {
+        background-color: #fff;
+        bottom: 4px;
+        content: "";
+        height: 26px;
+        left: 4px;
+        position: absolute;
+        transition: .4s;
+        width: 26px;
+    }
+
+input:checked + .slider {
+    background-color: #66bb6a;
+}
+
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+
+.slider.round {
+    border-radius: 34px;
+}
+
+    .slider.round:before {
+        border-radius: 50%;
+    }
+
+
+
+/*Model Start */
+
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 100; /* Sit on top */
+    padding-top: 150px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #17c6aa;
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Model End*/
+
+
+
+
+
+.modal--quickview .prd-block--prv-bottom .product-previews-carousel {
+    padding: 0;
+}
+
+body:not(.equal-height) .modal--quickview .product-previews-carousel a > span {
+    display: block;
+    position: relative;
+    border: 0;
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 128%;
+}
+
+    body:not(.equal-height) .modal--quickview .product-previews-carousel a > span > span {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    body:not(.equal-height) .modal--quickview .product-previews-carousel a > span img {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+
+.modal--quickview.modal-quickview--classic .product-previews-carousel {
+    height: 0;
+    position: relative;
+    transition: 0s;
+}
+
+@media (min-width: 480px) {
+    .modal--quickview.modal-quickview--classic .product-previews-carousel {
+        padding-bottom: calc(38% + 10px);
+    }
+}
+
+@media (max-width: 479px) {
+    .modal--quickview.modal-quickview--classic .product-previews-carousel {
+        padding-bottom: calc(38% + 10px);
+    }
+}
+
+@media (min-width: 992px) {
+    .modal--quickview .prd-block--no-previews .prd-block_info-bottom, .modal--quickview .prd-block--no-previews .prd-block_info-top {
+        width: calc(100% - 50% - 20px);
+    }
+
+    .modal--quickview.modal-quickview--classic .prd-block_info-bottom {
+        width: calc(100% - 50% - 20px);
+    }
+
+    .modal--quickview.modal-quickview--classic .quickview-info {
+        min-height: 65vh;
+    }
+}
+

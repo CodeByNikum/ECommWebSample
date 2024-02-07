@@ -1,0 +1,55 @@
+﻿@model PhulkariThreadz.Models.ViewModels.SubCategoryVM
+
+<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><a asp-area="Admin" asp-controller="SubCategory" asp-action="Index">Sub Category List</a></li>
+            <li><span>Add Sub Category</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="holder">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-18 col-lg-12">
+                <h2 class="text-center">Add Sub Category</h2>
+                <div class="form-wrapper">
+                    <form method="post">
+                          @*  <div asp-validation-summary="All"></div>*@
+                        <div class="row">
+                            <div class="col-sm-9">
+                                <div class="form-group">
+                                    <input asp-for="SubCategory.SubCategoryName" placeholder="Sub Category Name" class="form-control" />
+                                    <span asp-validation-for="SubCategory.SubCategoryName" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-9">
+                                <div class="form-group select-wrapper">
+                                    <select asp-for="SubCategory.CategoryId" asp-items="@Model.CategoryList" class="form-control">
+                                        <option disabled selected>--Select Category--</option>
+                                    </select>
+                                    <span asp-validation-for="SubCategory.CategoryId" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+                            <a asp-controller="SubCategory" asp-action="Index" class="btn btn-secondary" style="width:150px">Back to list</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+    }

@@ -1,0 +1,106 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Profile";
+    ViewData["ActivePage"] = ManageNavPages.Index;
+}
+
+<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><span>Account Details</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="holder">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4 aside aside--left">
+                <div class="list-group">
+                    <a asp-area="Identity" asp-page="/Account/Manage/Index" class="list-group-item active">Account Details</a>
+                    <a asp-area="Identity" asp-page="/Account/Manage/AccountAddress" class="list-group-item">My Addresses</a>
+                    <a asp-area="Customer" asp-controller="Account" asp-action="Wishlist" class="list-group-item">My Wishlist</a>
+                    <a asp-area="Customer" asp-controller="Account" asp-action="OrderHistory" class="list-group-item">My Order History</a>
+                    <a href="#" class="list-group-item disabled">My Reviews</a>
+                    <a href="#" class="list-group-item disabled">My Saved Tags</a>
+                    <a href="#" class="list-group-item disabled">Compare Products</a>
+                </div>
+            </div>
+            <div class="col-md-14 aside">
+                <h1 class="mb-3">Account Details</h1>
+                <div class="row vert-margin">
+                    <div class="col-sm-9">
+                        <div class="card">
+                            <div class="card-body">
+                                <h3>Personal Info</h3>
+                                <p>
+                                    <b>First Name:</b> @Model.Input.FirstName<br>
+                                    <b>Last Name:</b>  @Model.Input.LastName<br>
+                                    <b>E-mail:</b> @Model.Input.Email<br>
+                                    <b>Phone:</b> @Model.Input.PhoneNumber
+                                </p>
+                                <div class="mt-2 clearfix">
+                                    <a href="#" class="link-icn js-show-form" data-form="#updateDetails"><i class="icon-pencil"></i>Edit</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mt-3 d-none" id="updateDetails">
+                    <div class="card-body">
+                        <h3>Update Account Details</h3>
+                         <partial name="_StatusMessage" for="StatusMessage" />
+                        <div class="form-wrapper">
+                            <form id="profile-form" method="post">
+                                <div class="row mt-2">
+                                    <div class="col-sm-9">
+                                        <label class="text-uppercase">First Name:</label>
+                                        <div class="form-group">
+                                            <input asp-for="Input.FirstName" class="form-control" />
+                                            <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label class="text-uppercase">Last Name:</label>
+                                        <div class="form-group">
+                                            <input asp-for="Input.LastName" class="form-control" />
+                                            <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row mt-2">
+                                    <div class="col-sm-9">
+                                        <label class="text-uppercase">E-mail:</label>
+                                        <div class="form-group">
+                                            <input asp-for="Input.Email" class="form-control" />
+                                            <span asp-validation-for="Input.Email" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <label class="text-uppercase">Phone:</label>
+                                        <div class="form-group">
+                                            <input asp-for="Input.PhoneNumber" class="form-control" />
+                                            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="reset" class="btn btn--alt js-close-form" data-form="#updateDetails">Cancel</button>
+                                    <button type="submit" class="btn ml-1">Update</button>
+                                </div>
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/Account/Profile.js"></script>
+}

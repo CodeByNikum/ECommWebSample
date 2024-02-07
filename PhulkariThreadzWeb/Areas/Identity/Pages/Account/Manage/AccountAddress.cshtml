@@ -1,0 +1,122 @@
+﻿@page
+@model PhulkariThreadzWeb.Areas.Identity.Pages.Account.Manage.AccountAddressModel
+@{
+
+}
+
+<div class="holder breadcrumbs-wrap mt-0">
+    <div class="container">
+        <ul class="breadcrumbs">
+            <li><a asp-area="Customer" asp-controller="Home" asp-action="Index">Home</a></li>
+            <li><span>Account Addresses</span></li>
+        </ul>
+    </div>
+</div>
+
+<div class="holder">
+    <div class="container">
+        <form id="__AjaxAntiForgeryForm" action="#" method="post">
+            
+
+            <div class="row">
+                <div class="col-md-4 aside aside--left">
+                    <div class="list-group">
+                        <a asp-area="Identity" asp-page="/Account/Manage/Index" class="list-group-item">Account Details</a>
+                        <a asp-area="Identity" asp-page="/Account/Manage/AccountAddress" class="list-group-item active">My Addresses</a>
+                        <a asp-area="Customer" asp-controller="Account" asp-action="Wishlist" class="list-group-item">My Wishlist</a>
+                        <a asp-area="Customer" asp-controller="Account" asp-action="OrderHistory" class="list-group-item">My Order History</a>
+                        <a href="#" class="list-group-item disabled">My Reviews</a>
+                        <a href="#" class="list-group-item disabled">My Saved Tags</a>
+                        <a href="#" class="list-group-item disabled">Compare Products</a>
+                    </div>
+                </div>
+                <div class="col-md-14 aside">
+                    <h1 class="mb-3">My Addresses</h1>
+
+                    <a href="#" class="link-icn js-show-form" onclick="BindCountries()" data-form="#addAddress"><i class="bi bi-plus-circle-fill"></i>&nbsp;Add New Address</a>
+                    <input type="text" hidden id="hfUserId" value="@Model.Input.Id" />
+
+                    <div class="card mt-3 d-none" id="addAddress">
+                        <div class="card-body">
+                            <h3>Add Address</h3>
+                            <label class="text">Flat, House no., Building, Company, Apartment</label>
+                            <div class="form-group">
+                                <textarea type="text" id="txtAddress1" class="form-control" style="width:100%" rows="2"></textarea>
+                            </div>
+
+
+                            <label class="text">Area, Street, Sector, Village</label>
+                            <div class="form-group">
+                                <textarea type="text" id="txtAddress2" class="form-control" rows="3"></textarea>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-md-9">
+                                    <label class="text">Country:</label>
+                                    <div class="form-group select-wrapper">
+                                        <select id="ddlCountry" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-9" id="dvOtherStates">
+                                    <label class="text">State / Province / Region</label>
+                                    <div class="form-group ">
+                                        <input type="text" id="txtState" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-9" style="display:none" id="dvIndianStates">
+                                    <label class="text">State:</label>
+                                    <div class="form-group select-wrapper">
+                                        <select id="ddlState" class="form-control">
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-2">
+                                <div class="col-md-9">
+                                    <label class="text">City:</label>
+                                    <div class="form-group">
+                                        <input type="text" id="txtCity" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <label class="text">Postal code:</label>
+                                    <div class="form-group">
+                                        <input type="text" id="txtPostalCode" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="clearfix mt-2">
+                                <input id="cbIsDefault" style="opacity:0" name="checkbox1" type="checkbox">
+                                <label id="lblIsDefault" onclick="checkboxToggle()">Set address as default</label>
+                            </div>
+                            <div class="mt-2">
+                                <button type="reset" id="btnCancel" class="btn btn--alt js-close-form" data-form="#addAddress">Cancel</button>
+                                <button type="button" id="btnSave" class="btn ml-1">Add Address</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row" id="AddressInfo">
+
+
+
+
+                    </div>
+
+                   
+                </div>
+
+                
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script src="~/js/Account/Address.js"></script>
+}
+
